@@ -6,7 +6,7 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     //1. Declaración de variables
-    [Range(1, 100)] public float velocidad; //Velocidad del jugador
+    [Range(1, 1000)] public float velocidad; //Velocidad del jugador
     public int cargas;
     public TMP_Text vistaCargas;
     Rigidbody2D rb2d;
