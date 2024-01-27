@@ -14,9 +14,10 @@ public class player : MonoBehaviour
     public TMP_Text vistaCargas;
     Rigidbody2D rb2d;
     bool isPressed;
-<<<<<<< Updated upstream
 
-=======
+    public float tiempoTranscurrido = 0f;
+    public float enemyTime = 60f; 
+
     public float tiempoTranscurrido = 0f;
     public float enemyTime = 60f; 
     public RectTransform personaje;
@@ -24,7 +25,7 @@ public class player : MonoBehaviour
     public GameObject puerta;
     public TMP_Text subtitulos;
     private int cont = 0;
->>>>>>> Stashed changes
+
     void Start () {
         //2. Capturo y asocio los componentes Rigidbody2D y Sprite Renderer del Jugador
         rb2d = GetComponent<Rigidbody2D>();
@@ -62,9 +63,22 @@ public class player : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space)){
             isPressed = false;
         }
-   }
+        VerificarTiempo();
+    }
+    
+    void VerificarTiempo()
+    {
+        tiempoTranscurrido += Time.deltaTime;
+        if (tiempoTranscurrido >= enemyTime)
+        {
+            GameOver();
+        }
+    }
+    void GameOver(){
+        Debug.Log("Game Over");
+    }
 
-   void activarCaja(){
+    void activarCaja(){
         //Activas una animacion
         if(cargas==0){
             return;
@@ -72,19 +86,18 @@ public class player : MonoBehaviour
         tiempoTranscurrido = 0;
         cargas --;
         vistaCargas.text = cargas.ToString();
-<<<<<<< Updated upstream
-   }
-=======
+
        
     }
->>>>>>> Stashed changes
+        enemyTime = 60;
+    }
 
-   void recogerObj (){
+
+    void recogerObj (){
         cargas ++;
         vistaCargas.text = cargas.ToString();
-<<<<<<< Updated upstream
    }
-=======
+
     }
     void limpiarSubtitulos(){
          subtitulos.text = "";
@@ -106,6 +119,6 @@ public class player : MonoBehaviour
             Destroy(col.gameObject);
         }
     }
-    
->>>>>>> Stashed changes
+
+    }
 }
