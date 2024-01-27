@@ -11,6 +11,8 @@ public class player : MonoBehaviour
     public TMP_Text vistaCargas;
     Rigidbody2D rb2d;
     bool isPressed;
+    public float tiempoTranscurrido = 0f;
+    public float enemyTime = 60f; 
 
     void Start () {
         //2. Capturo y asocio los componentes Rigidbody2D y Sprite Renderer del Jugador
@@ -37,19 +39,33 @@ public class player : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space)){
             isPressed = false;
         }
-   }
+        VerificarTiempo();
+    }
+    
+    void VerificarTiempo()
+    {
+        tiempoTranscurrido += Time.deltaTime;
+        if (tiempoTranscurrido >= enemyTime)
+        {
+            GameOver();
+        }
+    }
+    void GameOver(){
+        Debug.Log("Game Over");
+    }
 
-   void activarCaja(){
+    void activarCaja(){
         //Activas una animacion
         if(cargas==0){
             return;
         }
         cargas --;
         vistaCargas.text = cargas.ToString();
-   }
+        enemyTime = 60;
+    }
 
-   void recogerObj (){
+    void recogerObj (){
         cargas ++;
         vistaCargas.text = cargas.ToString();
-   }
+    }
 }
