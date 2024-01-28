@@ -18,4 +18,9 @@ public class GameManager : MonoBehaviour
     {
      barra.value = player.tiempoTranscurrido;   
     }
+
+    public void Exit()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
+    }
 }
